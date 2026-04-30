@@ -188,6 +188,39 @@
       e.preventDefault();
     }
 
+    // Tags (hero)
+    const tag = e.target.closest('.tag-pill');
+    if (tag) {
+      const map = {
+        planner: '早点计划早点下班！',
+        entj: '紫人大姐头，效率效率',
+        chill: '发呆是创意的来源！',
+        explore: '通识和见识的边界会转化为人生与AI的边界',
+      };
+
+      const note = document.getElementById('tagNote');
+      const key = tag.dataset.tag;
+      const text = map[key];
+
+      // Toggle pressed state
+      const pressed = tag.getAttribute('aria-pressed') === 'true';
+      document.querySelectorAll('.tag-pill[aria-pressed="true"]').forEach((el) => {
+        el.setAttribute('aria-pressed', 'false');
+      });
+      tag.setAttribute('aria-pressed', pressed ? 'false' : 'true');
+
+      if (note) {
+        if (pressed || !text) {
+          note.hidden = true;
+          note.textContent = '';
+        } else {
+          note.textContent = text;
+          note.hidden = false;
+        }
+      }
+      return;
+    }
+
     // Projects: flip card
     const project = e.target.closest('.project-card');
     if (project) {
@@ -235,6 +268,7 @@
       return;
     }
   });
+
 
 
   // ESC close
