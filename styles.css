@@ -460,14 +460,29 @@ body.drawer-lock{overflow:hidden}
 .panel-head{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:12px}
 .panel-title{font-weight:800; letter-spacing:-.01em}
 .panel-sub{font-size:12px; color:rgba(17,17,17,.55)}
-.panel-items{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px}
+.panel-items{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:12px;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(17,17,17,.20) transparent;
+  -webkit-overflow-scrolling:touch;
+}
+.panel-items::-webkit-scrollbar{height:4px}
+.panel-items::-webkit-scrollbar-thumb{background:rgba(17,17,17,.20);border-radius:99px}
+.panel-items::-webkit-scrollbar-track{background:transparent}
 .panel-item{
+  flex:0 0 calc(50% - 5px);
+  min-width:140px;
   text-align:left; border:1px solid rgba(17,17,17,.08);
   background:rgba(255,255,255,.55);
   border-radius:14px; padding:12px;
   cursor:pointer;
   display:flex; gap:10px; align-items:flex-start;
   transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease;
+  scroll-snap-align:start;
 }
 .panel-item:hover{transform:translateY(-2px); box-shadow:var(--shadow-sm)}
 .panel-item:focus-visible{outline:2px solid rgba(216,91,62,.55); outline-offset:3px}
@@ -796,10 +811,28 @@ body.drawer-lock{overflow:hidden}
   .visual-media{height:300px}
   .about-grid{grid-template-columns: 1fr; }
   .exp-grid{grid-template-columns: 1fr; }
-  .panel-items{grid-template-columns: 1fr; }
+  .trust-logos{grid-template-columns: 1fr 1fr; gap:10px}
   .projects-grid{grid-template-columns: 1fr; }
   .skills-grid{grid-template-columns: 1fr; }
   .masonry{grid-template-columns: 1fr; }
+
+  /* Business tabs: mobile horizontal scroll */
+  .biz-tabs{
+    overflow-x:auto;
+    padding-bottom:12px;
+    scroll-snap-type:x mandatory;
+    scrollbar-width:thin;
+    scrollbar-color:rgba(17,17,17,.20) transparent;
+    -webkit-overflow-scrolling:touch;
+  }
+  .biz-tabs::-webkit-scrollbar{height:4px}
+  .biz-tabs::-webkit-scrollbar-thumb{background:rgba(17,17,17,.20);border-radius:99px}
+  .biz-tabs::-webkit-scrollbar-track{background:transparent}
+  .biz-tab{
+    flex:0 0 auto;
+    min-width:120px;
+  }
+  .biz-tab-indicator{display:none}
 
   /* Drawer: mobile bottom sheet */
   .exp-detail.is-drawer-open .exp-panel{padding-right:18px}
