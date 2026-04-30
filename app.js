@@ -2,6 +2,13 @@
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+  // Init: default active tag content
+  const tagNote = document.getElementById('tagNote');
+  if (tagNote) {
+    tagNote.textContent = '通识和见识的边界会转化为人生与AI的边界';
+    tagNote.hidden = false;
+  }
+
   // Mobile nav
   const toggle = document.querySelector('.nav-toggle');
   const mobileNav = document.getElementById('mobileNav');
@@ -20,129 +27,51 @@
     });
   }
 
-  // Drawer detail content (placeholder copy)
+  // Drawer detail content
   const DETAILS = {
     software: {
       search: {
-        title: 'AI 搜索',
-        desc: '适用于知识检索、长文问答与企业内搜索。强调可解释、可溯源与可评测。',
-        tags: ['RAG', '溯源', '评测'],
-        points: ['召回/排序与答案合成的整体链路设计', '引用与证据展示，降低幻觉风险', '评测集、线上指标与迭代闭环'],
+        desc: '端到端 RAG 方案落地、答案质量评测体系、搜索体验革新\n\n探索从"关键词匹配"到"语义理解"的转化，优化意图识别与答案合成的流式响应体验。',
       },
       cs: {
-        title: 'AI 客服',
-        desc: '面向高频问题与标准流程场景，通过知识库+流程编排+人工兜底提升效率与满意度。',
-        tags: ['知识库', '流程', '兜底'],
-        points: ['多轮对话与工单/系统联动', '风险控制与触发人工介入', '命中率、转人工率、满意度等指标体系'],
+        desc: '企业知识库构建、多轮对话流程编排、人工兜底与大模型切换\n\n设计复杂的任务型对话流，实现业务闭环。',
       },
       chat: {
-        title: 'AI 对话',
-        desc: '关注对话体验、记忆一致性与人设稳定性，让用户感到“可培养、可成长”。',
-        tags: ['体验', '记忆', '人设'],
-        points: ['语气与风格一致的对话策略', '短期/长期记忆与隐私边界', '对话质量评测与持续迭代'],
+        desc: '人格化与一致性塑造、长短期记忆管理、情感价值输出\n\n系统性定义 AI 角色，做个性化陪伴与有温度的交互。',
       },
     },
     hardware: {
       device: {
-        title: '陪伴设备',
-        desc: '以低打扰为前提，提供温和陪伴与可持续互动（语音为主，辅以触觉/灯效）。',
-        tags: ['陪伴', '低打扰', '情绪价值'],
-        points: ['核心场景：睡前/通勤/独处时刻', '交互：少即是多，减少打断', '目标：长期留存与关系建立'],
+        desc: '情绪感知与响应、低干扰交互设计、场景自适应提醒',
       },
       multi: {
-        title: '多模态交互',
-        desc: '把语音、屏幕、触觉与灯效作为一个整体，设计清晰、克制的一致体验。',
-        tags: ['语音', '触觉', '灯效'],
-        points: ['输入输出的优先级与冲突处理', '弱网/噪声环境的降级策略', '动效与反馈的情绪张力控制'],
+        desc: '声光电协同体验、跨模态语义映射',
       },
       edge: {
-        title: '端侧智能',
-        desc: '在端侧能力与隐私约束下，规划模型、缓存与 OTA 的可持续迭代。',
-        tags: ['隐私', '端侧推理', 'OTA'],
-        points: ['端云协同与成本/时延权衡', '隐私与数据合规的边界', '版本灰度与体验一致性'],
+        desc: '端侧隐私保护、OTA 持续进化',
       },
     },
     pm: {
       strategy: {
-        title: '产品策略',
-        desc: '用清晰的定位与边界，让团队知道“做什么/不做什么”，并能持续复盘。',
-        tags: ['定位', '路线图', '增长'],
-        points: ['用户洞察与价值主张', '路线图与里程碑拆解', '竞争分析与差异化叙事'],
+        desc: '核心价值锚点定位、商业闭环路径探索、技术边界权衡\n\n在大模型能力极限与用户真实需求之间寻找平衡点，定义 AI 产品在特定场景下的"必选理由"与差异化优势。',
       },
       prd: {
-        title: 'PRD / 交付',
-        desc: '把不确定的需求变成可交付的计划：定义验收、协作机制与风险兜底。',
-        tags: ['PRD', '验收', '协作'],
-        points: ['PRD 结构化与对齐', '跨团队协作与节奏管理', '灰度上线与问题闭环'],
+        desc: '逻辑严密的文档编写、多方协同机制、敏捷迭代与落地\n\n包含详细的边缘情况处理、AI 异常回复策略以及核心业务逻辑的流程拆解。',
       },
       eval: {
-        title: '数据与评测',
-        desc: '用指标体系与评测门槛保证质量，把迭代变成确定性提升。',
-        tags: ['指标', '评测', '质量门槛'],
-        points: ['离线评测集与线上指标对齐', '一票否决项与安全护栏', '实验设计与数据飞轮'],
+        desc: '指标体系建立、质量回溯与监控、方法论沉淀\n\n针对AI产品展开多维度评测体系，制定评测标准，完成优化升级迭代。',
       },
     },
   };
-
-  const backdrop = document.getElementById('drawerBackdrop');
-  let activeWrap = null;
-
-  function setBackdrop(open) {
-    if (!backdrop) return;
-    backdrop.hidden = !open;
-    document.body.classList.toggle('drawer-lock', open);
-  }
-
-  function closeDrawer() {
-    if (!activeWrap) {
-      setBackdrop(false);
-      return;
-    }
-    activeWrap.classList.remove('is-drawer-open');
-    const drawer = activeWrap.querySelector('.drawer');
-    if (drawer) drawer.setAttribute('aria-hidden', 'true');
-    activeWrap = null;
-    setBackdrop(false);
-  }
 
   function renderDrawer(wrap, expKey, itemKey) {
     const detail = DETAILS?.[expKey]?.[itemKey];
     if (!detail) return;
 
-    const drawer = wrap.querySelector('.drawer');
-    if (!drawer) return;
+    const third = wrap.querySelector('.exp-third');
+    if (!third) return;
 
-    const titleEl = drawer.querySelector('.drawer-title');
-    const descEl = drawer.querySelector('.drawer-desc');
-    const tagsEl = drawer.querySelector('.drawer-tags');
-    const pointsEl = drawer.querySelector('.drawer-points');
-
-    if (titleEl) titleEl.textContent = detail.title;
-    if (descEl) descEl.textContent = detail.desc;
-
-    if (tagsEl) {
-      tagsEl.innerHTML = '';
-      detail.tags.forEach((t) => {
-        const s = document.createElement('span');
-        s.className = 'drawer-tag';
-        s.textContent = t;
-        tagsEl.appendChild(s);
-      });
-    }
-
-    if (pointsEl) {
-      pointsEl.innerHTML = '';
-      detail.points.forEach((p) => {
-        const li = document.createElement('li');
-        li.textContent = p;
-        pointsEl.appendChild(li);
-      });
-    }
-
-    wrap.classList.add('is-drawer-open');
-    drawer.setAttribute('aria-hidden', 'false');
-    activeWrap = wrap;
-    setBackdrop(true);
+    third.innerHTML = `<p class="third-desc" style="white-space:pre-line;line-height:1.9;font-size:14px;color:rgba(17,17,17,.60)">${detail.desc}</p>`;
   }
 
   function setSelectedItem(wrap, item) {
@@ -153,6 +82,11 @@
       x.setAttribute('aria-selected', selected ? 'true' : 'false');
     });
   }
+
+  const backdrop = null;
+  let activeWrap = null;
+
+  function closeDrawer() {}
 
   // Experience cards + panels
   const expCards = Array.from(document.querySelectorAll('.exp-card'));
@@ -221,15 +155,20 @@
       return;
     }
 
-    // Projects: flip card
-    const project = e.target.closest('.project-card');
-    if (project) {
-      const flipped = project.classList.toggle('is-flipped');
-      project.setAttribute('aria-pressed', flipped ? 'true' : 'false');
-      const back = project.querySelector('.project-back');
-      if (back) back.setAttribute('aria-hidden', flipped ? 'false' : 'true');
+
+
+    // Sharing tabs
+    const shareTab = e.target.closest('.sharing-item[data-tab]');
+    if (shareTab) {
+      const tab = shareTab.dataset.tab;
+      document.querySelectorAll('.sharing-item').forEach((el) => el.classList.remove('is-active'));
+      document.querySelectorAll('.sharing-pane').forEach((el) => el.classList.remove('is-active'));
+      shareTab.classList.add('is-active');
+      const pane = document.querySelector(`.sharing-pane[data-pane="${tab}"]`);
+      if (pane) pane.classList.add('is-active');
       return;
     }
+
 
     // Sharing posts: flip card
     const post = e.target.closest('.post-card');
@@ -276,6 +215,85 @@
     if (e.key === 'Escape') closeDrawer();
   });
 
+  // Business direction tab navigation
+  function initBizTabs() {
+    const tabList = document.getElementById('bizTabs');
+    const indicator = document.getElementById('bizTabIndicator');
+    if (!tabList || !indicator) return;
+
+    const tabs = Array.from(tabList.querySelectorAll('.biz-tab'));
+    const panels = document.querySelectorAll('.biz-panel');
+    if (!tabs.length) return;
+
+    let activeTab = tabList.querySelector('.biz-tab.is-active') || tabs[0];
+
+    function updateIndicator(tab) {
+      if (!indicator || !tab) return;
+      const rect = tab.getBoundingClientRect();
+      const listRect = tabList.getBoundingClientRect();
+      const left = rect.left - listRect.left;
+      indicator.style.transform = `translateX(${left}px)`;
+      indicator.style.width = `${rect.width}px`;
+    }
+
+    function activateTab(tab) {
+      if (!tab) return;
+      const key = tab.dataset.tab;
+
+      tabs.forEach((t) => {
+        const selected = t === tab;
+        t.classList.toggle('is-active', selected);
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+      });
+
+      panels.forEach((p) => {
+        const show = p.dataset.panel === key;
+        if (show) {
+          p.removeAttribute('hidden');
+          // re-trigger animation
+          p.style.animation = 'none';
+          p.offsetHeight; // force reflow
+          p.style.animation = '';
+        } else {
+          p.setAttribute('hidden', '');
+        }
+      });
+
+      activeTab = tab;
+      updateIndicator(tab);
+    }
+
+    // Click
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => activateTab(tab));
+    });
+
+    // Keyboard: arrow left/right
+    tabList.addEventListener('keydown', (e) => {
+      const current = Array.from(tabs).indexOf(activeTab);
+      if (current < 0) return;
+      let next = current;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        next = (current + 1) % tabs.length;
+        e.preventDefault();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        next = (current - 1 + tabs.length) % tabs.length;
+        e.preventDefault();
+      } else {
+        return;
+      }
+      tabs[next].focus();
+      activateTab(tabs[next]);
+    });
+
+    // Init: position indicator under active tab
+    requestAnimationFrame(() => updateIndicator(activeTab));
+
+    // Reposition on resize
+    window.addEventListener('resize', () => updateIndicator(activeTab));
+  }
+
+
   // Contact details toggle
   const contactToggle = document.getElementById('contactToggle');
   const contactDetails = document.getElementById('contactDetails');
@@ -287,9 +305,227 @@
     });
   }
 
+  // Music Player
+  (function initMusicPlayer() {
+    const player = document.getElementById('musicPlayer');
+    const playBtn = document.getElementById('mpPlayBtn');
+    const iconPlay = document.getElementById('mpIconPlay');
+    const iconPause = document.getElementById('mpIconPause');
+    const uploadBtn = document.getElementById('mpUploadBtn');
+    const fileInput = document.getElementById('mpFileInput');
+    const progressBar = document.getElementById('mpProgressBar');
+    const progressFill = document.getElementById('mpProgressFill');
+    const progressThumb = document.getElementById('mpProgressThumb');
+    const currentEl = document.getElementById('mpCurrent');
+    const durationEl = document.getElementById('mpDuration');
+    const titleEl = document.getElementById('mpTitle');
+
+    if (!player || !playBtn) return;
+
+    const audio = new Audio('assets/music.mp3');
+    audio.load();
+    let isPlaying = false;
+    let isDragging = false;
+
+    // Show player by default
+    player.hidden = false;
+    titleEl.textContent = '拍拍灰-Everything will be ok';
+    durationEl.textContent = '—';
+
+    // Web Audio API setup (lazy init on first play)
+    let audioCtx = null;
+    let analyser = null;
+    let sourceNode = null;
+    let animFrameId = null;
+    const mvBars = document.querySelectorAll('.mv-bar');
+    const NUM_BARS = mvBars.length;
+
+    function initWebAudio() {
+      if (audioCtx) return;
+      try {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 128;
+        analyser.smoothingTimeConstant = 0.8;
+        sourceNode = audioCtx.createMediaElementSource(audio);
+        sourceNode.connect(analyser);
+        analyser.connect(audioCtx.destination);
+      } catch (e) {
+        audioCtx = null;
+      }
+    }
+
+    function startVisualizer() {
+      if (!analyser || !audioCtx) return;
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      const dataArr = new Uint8Array(analyser.frequencyBinCount);
+
+      function draw() {
+        animFrameId = requestAnimationFrame(draw);
+        analyser.getByteFrequencyData(dataArr);
+
+        // Sample frequency bins across 5 bars
+        const step = Math.floor(dataArr.length / NUM_BARS);
+        mvBars.forEach((bar, i) => {
+          // Average a small range around each sampled bin for smoother visuals
+          let sum = 0;
+          const start = i * step;
+          for (let j = 0; j < step; j++) {
+            sum += dataArr[Math.min(start + j, dataArr.length - 1)];
+          }
+          const avg = step > 0 ? sum / step : dataArr[start] || 0;
+          const minH = 4;
+          const maxH = 18;
+          const h = minH + (avg / 255) * (maxH - minH);
+          bar.style.height = h + 'px';
+        });
+      }
+      draw();
+    }
+
+    function stopVisualizer() {
+      if (animFrameId) {
+        cancelAnimationFrame(animFrameId);
+        animFrameId = null;
+      }
+      // Reset bars to idle
+      mvBars.forEach((bar) => {
+        bar.style.height = '';
+        bar.style.animation = '';
+      });
+    }
+
+    function formatTime(s) {
+      if (isNaN(s) || s === Infinity) return '0:00';
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2, '0');
+    }
+
+    function updatePlayState(playing) {
+      isPlaying = playing;
+      player.classList.toggle('is-playing', playing);
+      iconPlay.style.display = playing ? 'none' : '';
+      iconPause.style.display = playing ? '' : 'none';
+      playBtn.setAttribute('aria-label', playing ? '暂停' : '播放');
+      if (playing) {
+        initWebAudio();
+        startVisualizer();
+      } else {
+        stopVisualizer();
+      }
+    }
+
+    function updateProgress() {
+      if (audio.duration && isFinite(audio.duration)) {
+        const pct = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = pct + '%';
+        progressThumb.style.left = pct + '%';
+        progressBar.setAttribute('aria-valuenow', Math.round(pct));
+        currentEl.textContent = formatTime(audio.currentTime);
+      }
+    }
+
+    // Load audio from file input
+    function loadAudio(file) {
+      const url = URL.createObjectURL(file);
+      audio.src = url;
+      audio.load();
+      const name = file.name.replace(/\.[^.]+$/, '');
+      titleEl.textContent = name || '未命名音频';
+      durationEl.textContent = formatTime(0);
+      progressFill.style.width = '0%';
+      progressThumb.style.left = '0%';
+      updatePlayState(false);
+    }
+
+    // Events
+    playBtn.addEventListener('click', () => {
+      if (!audio.src || audio.readyState < 2) return;
+      if (isPlaying) {
+        audio.pause();
+        updatePlayState(false);
+      } else {
+        audio.play().catch(() => {});
+        updatePlayState(true);
+      }
+    });
+
+    audio.addEventListener('timeupdate', () => {
+      if (!isDragging) updateProgress();
+    });
+
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = formatTime(audio.duration);
+      progressBar.setAttribute('aria-valuemax', '100');
+    });
+
+    audio.addEventListener('ended', () => {
+      updatePlayState(false);
+      audio.currentTime = 0;
+      updateProgress();
+    });
+
+    audio.addEventListener('play', () => updatePlayState(true));
+    audio.addEventListener('pause', () => {
+      if (!audio.ended) updatePlayState(false);
+    });
+
+    // Progress bar click / drag
+    function seekTo(e) {
+      if (!audio.duration) return;
+      const rect = progressBar.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      audio.currentTime = pct * audio.duration;
+      updateProgress();
+    }
+
+    progressBar.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      seekTo(e);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (isDragging) seekTo(e);
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    progressBar.addEventListener('keydown', (e) => {
+      if (!audio.duration) return;
+      if (e.key === 'ArrowRight') { audio.currentTime = Math.min(audio.duration, audio.currentTime + 5); }
+      else if (e.key === 'ArrowLeft') { audio.currentTime = Math.max(0, audio.currentTime - 5); }
+      else return;
+      updateProgress();
+      e.preventDefault();
+    });
+
+    // Upload
+    uploadBtn.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files && fileInput.files[0]) {
+        loadAudio(fileInput.files[0]);
+      }
+    });
+
+    // Keyboard: Space = play/pause (when player focused or global)
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && document.activeElement === player) {
+        e.preventDefault();
+        playBtn.click();
+      }
+    });
+  })();
+
   // Default
   setActiveExp('software');
+  initBizTabs();
 })();
+
+
 
 
 

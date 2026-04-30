@@ -74,12 +74,46 @@
                   <span class="tag-icon" aria-hidden="true">☁️</span>
                   爱放空
                 </button>
-                <button class="logo-pill tag-pill" type="button" data-tag="explore" aria-pressed="false">
+                <button class="logo-pill tag-pill" type="button" data-tag="explore" aria-pressed="true">
                   <span class="tag-icon" aria-hidden="true">🔭</span>
                   猎奇新领域
                 </button>
               </div>
               <div class="tag-note" id="tagNote" aria-live="polite" hidden></div>
+            </div>
+
+            <!-- Music Player -->
+            <div class="music-player" id="musicPlayer" aria-label="音乐播放器" hidden>
+              <div class="mp-visualizer" id="mpVisualizer" aria-hidden="true">
+                <span class="mv-bar"></span>
+                <span class="mv-bar"></span>
+                <span class="mv-bar"></span>
+                <span class="mv-bar"></span>
+                <span class="mv-bar"></span>
+              </div>
+              <div class="mp-info">
+                <div class="mp-title" id="mpTitle">未选择音频</div>
+                <div class="mp-time"><span id="mpCurrent">0:00</span> / <span id="mpDuration">0:00</span></div>
+              </div>
+              <div class="mp-controls">
+                <button class="mp-btn" id="mpPlayBtn" type="button" aria-label="播放">
+                  <svg id="mpIconPlay" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M3 2l9 5-9 5V2z"/></svg>
+                  <svg id="mpIconPause" width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true" style="display:none"><rect x="3" y="2" width="3" height="10"/><rect x="8" y="2" width="3" height="10"/></svg>
+                </button>
+                <div class="mp-progress-wrap">
+                  <div class="mp-progress-bar" id="mpProgressBar" role="slider" aria-label="播放进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+                    <div class="mp-progress-fill" id="mpProgressFill"></div>
+                    <div class="mp-progress-thumb" id="mpProgressThumb"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="mp-meta">
+                <span class="mp-time"><span id="mpCurrent">0:00</span> / <span id="mpDuration">0:00</span></span>
+                <button class="mp-btn mp-upload-btn" id="mpUploadBtn" type="button" aria-label="上传音频">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true"><path d="M7 1v8M4 4l3-3 3 3M2 10h10v3H2z"/></svg>
+                </button>
+                <input type="file" id="mpFileInput" accept="audio/*" hidden />
+              </div>
             </div>
 
           </div>
@@ -106,45 +140,14 @@
           <p class="sub">好奇心驱动 · 解决问题 · 创造价值</p>
         </div>
 
-        <div class="about-grid">
-          <div class="card profile-card">
-            <div class="profile-photo" role="img" aria-label="Profile placeholder"></div>
-            <div class="profile-accent" aria-hidden="true"></div>
-            <div class="doodle doodle-3" aria-hidden="true"></div>
-          </div>
-
-          <div class="about-info">
-            <div class="info-cards">
-              <div class="card info-card">
-                <div class="info-icon" aria-hidden="true">★</div>
-                <div class="info-main">8+</div>
-                <div class="info-sub">年经验</div>
-              </div>
-              <div class="card info-card">
-                <div class="info-icon" aria-hidden="true">☀</div>
-                <div class="info-main">20+</div>
-                <div class="info-sub">交付项目</div>
-              </div>
-              <div class="card info-card">
-                <div class="info-icon" aria-hidden="true">⎋</div>
-                <div class="info-main">硕士</div>
-                <div class="info-sub">计算机相关</div>
-              </div>
-              <div class="card info-card">
-                <div class="info-icon" aria-hidden="true">⟡</div>
-                <div class="info-main">开放</div>
-                <div class="info-sub">全球视野</div>
-              </div>
+        <div class="about-grid about-grid--single">
+          <div class="card about-text">
+            <div class="meta">
+              <div class="meta-row"><span class="meta-k">姓名</span><span class="meta-v">黄玉萍</span></div>
+              <div class="meta-row"><span class="meta-k">学历</span><span class="meta-v">五邑大学 · 数据科学与大数据技术（2021–2025）</span></div>
+              <div class="meta-row"><span class="meta-k">方向</span><span class="meta-v">AI 产品经理 / AI 产品策划</span></div>
             </div>
-
-            <div class="card about-text">
-              <div class="meta">
-                <div class="meta-row"><span class="meta-k">姓名</span><span class="meta-v">黄玉萍</span></div>
-                <div class="meta-row"><span class="meta-k">学历</span><span class="meta-v">五邑大学 · 数据科学与大数据技术（2021–2025）</span></div>
-                <div class="meta-row"><span class="meta-k">方向</span><span class="meta-v">AI 产品经理 / AI 产品策划 · Agent / Prompt / 质检</span></div>
-              </div>
-              <p class="desc">近两年聚焦腾讯游戏业务线的对话类 Agent 落地与效果保障：建立“badcase 收集→归因（模型/Prompt/知识/链路）→优化→回归验证→结论入档”的闭环；灰度期周质检、常态期双周质检，每轮 3–5 天完成一轮数据集调取/处理/标注回收/报告输出；搭建人设一致性/安全风险/知识准确性/输出格式规范等多维质检框架，并推进需求澄清、API 联调、配置与上线验收。</p>
-            </div>
+            <p class="desc">我想我的学习和职业生涯是无比幸运的，但如果要形容这2年的工作，大概就是在写一篇没有截止日期的"毕设"。每天都在收集需求、改内容、收反馈、再改一版——像极了当年被导师反复打回重写的日子。不同的是，这次没有终稿，只有一轮轮更接近的版本，而我也慢慢习惯了把事情一点点调顺的过程。</p>
           </div>
         </div>
       </div>
@@ -218,9 +221,6 @@
             </div>
 
             <div class="exp-third card" aria-label="AI 软件 三级内容" aria-live="polite">
-              <div class="third-kicker">详细内容</div>
-              <div class="third-title">请选择上方方向</div>
-              <p class="third-desc">点击二级菜单（如“AI 搜索”），在此处展示对应的三级内容。</p>
               <div class="third-tags" aria-label="Tags"></div>
               <ul class="third-points"></ul>
             </div>
@@ -263,9 +263,6 @@
             </div>
 
             <div class="exp-third card" aria-label="AI 硬件 三级内容" aria-live="polite">
-              <div class="third-kicker">详细内容</div>
-              <div class="third-title">请选择上方方向</div>
-              <p class="third-desc">点击二级菜单，在此处展示对应的三级内容。</p>
               <div class="third-tags" aria-label="Tags"></div>
               <ul class="third-points"></ul>
             </div>
@@ -308,9 +305,6 @@
             </div>
 
             <div class="exp-third card" aria-label="AI 产品经理 三级内容" aria-live="polite">
-              <div class="third-kicker">详细内容</div>
-              <div class="third-title">请选择上方方向</div>
-              <p class="third-desc">点击二级菜单，在此处展示对应的三级内容。</p>
               <div class="third-tags" aria-label="Tags"></div>
               <ul class="third-points"></ul>
             </div>
@@ -327,175 +321,138 @@
           <p class="sub">以下是负责过的AI业务板块及详细介绍</p>
         </div>
 
-        <div class="projects-grid" role="list">
-          <!-- 01 AI 客服业务 -->
-          <button class="card project-card" type="button" role="listitem" aria-pressed="false" aria-label="AI 客服业务（点击翻转查看详情）">
-            <div class="project-inner">
-              <div class="project-face project-front">
-                <div class="cover">
-                  <img class="cover-photo" src="./assets/profile.jpg" alt="" loading="lazy" />
-                  <div class="cover-img" aria-hidden="true"></div>
-                  <span class="cover-accent" aria-hidden="true"></span>
-                  <span class="bookmark" aria-hidden="true">🔖</span>
-                  <span class="detail-hint" aria-hidden="true">详细内容 ↻</span>
-                </div>
-                <div class="p-title">AI 客服业务</div>
-                <div class="p-desc">知识库 + 流程编排 + 人工兜底，让问题解决更稳定。</div>
-              </div>
-              <div class="project-face project-back" aria-hidden="true">
-                <div class="p-back-kicker">业务概览</div>
-                <div class="p-back-title">AI 客服业务</div>
-                <p class="p-back-desc">把“问答”落到“可执行流程”，同时保证风险可控与体验可解释。</p>
-                <div class="p-back-points">
-                  <div class="p-back-point"><span class="k">应用方向</span><span class="v">企业/游戏客服、工单/系统联动、风险触发转人工</span></div>
-                  <div class="p-back-point"><span class="k">挑战</span><span class="v">问题分布长尾 + 规则繁多 + 误答风险高</span></div>
-                  <div class="p-back-point"><span class="k">方案</span><span class="v">知识分层 + 意图路由 + 流程编排 + 兜底策略（转人工/澄清/拒答）</span></div>
-                  <div class="p-back-point"><span class="k">结果</span><span class="v">命中率/转人工率/满意度可量化跟踪，迭代更可控</span></div>
-                </div>
-              </div>
-            </div>
+        <div class="biz-tabs" id="bizTabs" role="tablist" aria-label="业务方向选择">
+          <button class="biz-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="bizPanel-cs" data-tab="cs">
+            <span class="biz-tab-icon" aria-hidden="true">☷</span>
+            <span class="biz-tab-label">AI 客服业务</span>
           </button>
-
-          <!-- 02 AI 搜索业务 -->
-          <button class="card project-card" type="button" role="listitem" aria-pressed="false" aria-label="AI 搜索业务（点击翻转查看详情）">
-            <div class="project-inner">
-              <div class="project-face project-front">
-                <div class="cover">
-                  <img class="cover-photo" src="./assets/profile.jpg" alt="" loading="lazy" />
-                  <div class="cover-img" aria-hidden="true"></div>
-                  <span class="cover-accent" aria-hidden="true"></span>
-                  <span class="bookmark" aria-hidden="true">🔖</span>
-                  <span class="detail-hint" aria-hidden="true">详细内容 ↻</span>
-                </div>
-                <div class="p-title">AI 搜索业务</div>
-                <div class="p-desc">RAG 检索增强 + 引用溯源，让答案可信可复盘。</div>
-              </div>
-              <div class="project-face project-back" aria-hidden="true">
-                <div class="p-back-kicker">业务概览</div>
-                <div class="p-back-title">AI 搜索业务</div>
-                <p class="p-back-desc">用证据链与评测把“回答”变成可验证的能力。</p>
-                <div class="p-back-points">
-                  <div class="p-back-point"><span class="k">应用方向</span><span class="v">企业内搜、产品/规则查询、知识库检索与答案合成</span></div>
-                  <div class="p-back-point"><span class="k">挑战</span><span class="v">召回不稳、幻觉风险、线上效果难定位</span></div>
-                  <div class="p-back-point"><span class="k">方案</span><span class="v">召回/重排/答案合成分层 + 引用溯源 + 离线评测集与线上指标对齐</span></div>
-                  <div class="p-back-point"><span class="k">结果</span><span class="v">问题可解释、链路可定位、迭代有数据抓手</span></div>
-                </div>
-              </div>
-            </div>
+          <button class="biz-tab" type="button" role="tab" aria-selected="false" aria-controls="bizPanel-search" data-tab="search">
+            <span class="biz-tab-icon" aria-hidden="true">⌕</span>
+            <span class="biz-tab-label">AI 搜索业务</span>
           </button>
-
-          <!-- 03 AI 运营业务 -->
-          <button class="card project-card" type="button" role="listitem" aria-pressed="false" aria-label="AI 运营业务（点击翻转查看详情）">
-            <div class="project-inner">
-              <div class="project-face project-front">
-                <div class="cover">
-                  <img class="cover-photo" src="./assets/profile.jpg" alt="" loading="lazy" />
-                  <div class="cover-img" aria-hidden="true"></div>
-                  <span class="cover-accent" aria-hidden="true"></span>
-                  <span class="bookmark" aria-hidden="true">🔖</span>
-                  <span class="detail-hint" aria-hidden="true">详细内容 ↻</span>
-                </div>
-                <div class="p-title">AI 运营业务</div>
-                <div class="p-desc">把玩法与内容变成可配置、可复制、可复盘的流程。</div>
-              </div>
-              <div class="project-face project-back" aria-hidden="true">
-                <div class="p-back-kicker">业务概览</div>
-                <div class="p-back-title">AI 运营业务</div>
-                <p class="p-back-desc">让运营同学“少写、多用”，让策略沉淀为资产。</p>
-                <div class="p-back-points">
-                  <div class="p-back-point"><span class="k">应用方向</span><span class="v">活动生成/配置、内容生产、策略编排与 SOP 沉淀</span></div>
-                  <div class="p-back-point"><span class="k">挑战</span><span class="v">玩法多、配置复杂、交付口径不一致</span></div>
-                  <div class="p-back-point"><span class="k">方案</span><span class="v">模板化结构 + 规范化字段 + 一键生成说明（生成/使用/上线）</span></div>
-                  <div class="p-back-point"><span class="k">结果</span><span class="v">支持批量部署与复盘迭代，协作成本更低</span></div>
-                </div>
-              </div>
-            </div>
+          <button class="biz-tab" type="button" role="tab" aria-selected="false" aria-controls="bizPanel-ops" data-tab="ops">
+            <span class="biz-tab-icon" aria-hidden="true">✦</span>
+            <span class="biz-tab-label">AI 运营业务</span>
           </button>
-
-          <!-- 04 AI 陪伴硬件产品 -->
-          <button class="card project-card" type="button" role="listitem" aria-pressed="false" aria-label="AI 陪伴硬件产品（点击翻转查看详情）">
-            <div class="project-inner">
-              <div class="project-face project-front">
-                <div class="cover">
-                  <img class="cover-photo" src="./assets/profile.jpg" alt="" loading="lazy" />
-                  <div class="cover-img" aria-hidden="true"></div>
-                  <span class="cover-accent" aria-hidden="true"></span>
-                  <span class="bookmark" aria-hidden="true">🔖</span>
-                  <span class="detail-hint" aria-hidden="true">详细内容 ↻</span>
-                </div>
-                <div class="p-title">AI 陪伴硬件产品</div>
-                <div class="p-desc">端云协同 + 多模态反馈，做“克制但可持续”的陪伴。</div>
-              </div>
-              <div class="project-face project-back" aria-hidden="true">
-                <div class="p-back-kicker">业务概览</div>
-                <div class="p-back-title">AI 陪伴硬件产品</div>
-                <p class="p-back-desc">软硬件约束下，用体验与内容策略建立长期关系。</p>
-                <div class="p-back-points">
-                  <div class="p-back-point"><span class="k">应用方向</span><span class="v">语音陪伴、灯效/触觉反馈、端侧能力与 OTA 迭代</span></div>
-                  <div class="p-back-point"><span class="k">挑战</span><span class="v">时延/成本/隐私约束 + 体验稳定性要求高</span></div>
-                  <div class="p-back-point"><span class="k">方案</span><span class="v">端云分工 + 降级策略 + 人设/记忆边界 + 内容运营联动</span></div>
-                  <div class="p-back-point"><span class="k">结果</span><span class="v">交互闭环更稳定，可持续迭代路径更清晰</span></div>
-                </div>
-              </div>
-            </div>
+          <button class="biz-tab" type="button" role="tab" aria-selected="false" aria-controls="bizPanel-hw" data-tab="hw">
+            <span class="biz-tab-icon" aria-hidden="true">◎</span>
+            <span class="biz-tab-label">AI 陪伴硬件</span>
           </button>
-
-          <!-- 05 vibe coding 快速实现 -->
-          <button class="card project-card" type="button" role="listitem" aria-pressed="false" aria-label="vibe coding 快速实现（点击翻转查看详情）">
-            <div class="project-inner">
-              <div class="project-face project-front">
-                <div class="cover">
-                  <img class="cover-photo" src="./assets/profile.jpg" alt="" loading="lazy" />
-                  <div class="cover-img" aria-hidden="true"></div>
-                  <span class="cover-accent" aria-hidden="true"></span>
-                  <span class="bookmark" aria-hidden="true">🔖</span>
-                  <span class="detail-hint" aria-hidden="true">详细内容 ↻</span>
-                </div>
-                <div class="p-title">vibe coding 快速实现</div>
-                <div class="p-desc">从想法到可演示 Demo：快速搭结构、跑通交互与迭代。</div>
-              </div>
-              <div class="project-face project-back" aria-hidden="true">
-                <div class="p-back-kicker">业务概览</div>
-                <div class="p-back-title">vibe coding 快速实现</div>
-                <p class="p-back-desc">用最小可行实现，把讨论变成可验证的界面与流程。</p>
-                <div class="p-back-points">
-                  <div class="p-back-point"><span class="k">应用方向</span><span class="v">原型/静态站、交互 Demo、组件化改造与体验调优</span></div>
-                  <div class="p-back-point"><span class="k">挑战</span><span class="v">需求变化快，效果要“马上可见”</span></div>
-                  <div class="p-back-point"><span class="k">方案</span><span class="v">最小闭环优先 + 可复用组件 + 逐步增强（性能/可用性/无障碍）</span></div>
-                  <div class="p-back-point"><span class="k">结果</span><span class="v">更快完成对齐与验证，减少无效沟通成本</span></div>
-                </div>
-              </div>
-            </div>
+          <button class="biz-tab" type="button" role="tab" aria-selected="false" aria-controls="bizPanel-vc" data-tab="vc">
+            <span class="biz-tab-icon" aria-hidden="true">⚡</span>
+            <span class="biz-tab-label">vibe coding</span>
           </button>
-
-          <!-- 06 AI 落地与质检标准 -->
-          <button class="card project-card" type="button" role="listitem" aria-pressed="false" aria-label="AI 落地与质检标准（点击翻转查看详情）">
-            <div class="project-inner">
-              <div class="project-face project-front">
-                <div class="cover">
-                  <img class="cover-photo" src="./assets/profile.jpg" alt="" loading="lazy" />
-                  <div class="cover-img" aria-hidden="true"></div>
-                  <span class="cover-accent" aria-hidden="true"></span>
-                  <span class="bookmark" aria-hidden="true">🔖</span>
-                  <span class="detail-hint" aria-hidden="true">详细内容 ↻</span>
-                </div>
-                <div class="p-title">AI 落地与质检标准</div>
-                <div class="p-desc">把质量门槛做成“指标 + 规则 + 流程”的可执行体系。</div>
-              </div>
-              <div class="project-face project-back" aria-hidden="true">
-                <div class="p-back-kicker">业务概览</div>
-                <div class="p-back-title">AI 落地与质检标准</div>
-                <p class="p-back-desc">用评测维度与闭环节奏，保证上线后的稳定可控。</p>
-                <div class="p-back-points">
-                  <div class="p-back-point"><span class="k">应用方向</span><span class="v">人设一致性/安全风险/知识准确性/格式规范等多维评测</span></div>
-                  <div class="p-back-point"><span class="k">挑战</span><span class="v">badcase 分散、复现难、迭代难量化</span></div>
-                  <div class="p-back-point"><span class="k">方案</span><span class="v">badcase 收集→归因→优化→回归→结论入档；离线评测+线上指标对齐</span></div>
-                  <div class="p-back-point"><span class="k">结果</span><span class="v">上线质量更稳，问题定位更快，迭代节奏更可控</span></div>
-                </div>
-              </div>
-            </div>
+          <button class="biz-tab" type="button" role="tab" aria-selected="false" aria-controls="bizPanel-qa" data-tab="qa">
+            <span class="biz-tab-icon" aria-hidden="true">⟲</span>
+            <span class="biz-tab-label">AI 质检标准</span>
           </button>
+          <div class="biz-tab-indicator" id="bizTabIndicator" aria-hidden="true"></div>
         </div>
+
+        <div class="biz-panels">
+          <div class="biz-panel card" id="bizPanel-cs" role="tabpanel" data-panel="cs">
+            <div class="bp-head">
+              <div class="bp-icon" aria-hidden="true">☷</div>
+              <div class="bp-title-wrap">
+                <div class="bp-title">AI 客服业务</div>
+                <p class="bp-desc">知识库 + 流程编排 + 人工兜底，让问题解决更稳定。</p>
+              </div>
+            </div>
+            <div class="bp-divider" aria-hidden="true"></div>
+            <div class="bp-points">
+              <div class="bp-point"><span class="k">应用方向</span><span class="v">企业/游戏客服、工单/系统联动、风险触发转人工</span></div>
+              <div class="bp-point"><span class="k">挑战</span><span class="v">问题分布长尾 + 规则繁多 + 误答风险高</span></div>
+              <div class="bp-point"><span class="k">方案</span><span class="v">知识分层 + 意图路由 + 流程编排 + 兜底策略（转人工/澄清/拒答）</span></div>
+              <div class="bp-point"><span class="k">结果</span><span class="v">命中率/转人工率/满意度可量化跟踪，迭代更可控</span></div>
+            </div>
+          </div>
+
+          <div class="biz-panel card" id="bizPanel-search" role="tabpanel" data-panel="search" hidden>
+            <div class="bp-head">
+              <div class="bp-icon" aria-hidden="true">⌕</div>
+              <div class="bp-title-wrap">
+                <div class="bp-title">AI 搜索业务</div>
+                <p class="bp-desc">RAG 检索增强 + 引用溯源，让答案可信可复盘。</p>
+              </div>
+            </div>
+            <div class="bp-divider" aria-hidden="true"></div>
+            <div class="bp-points">
+              <div class="bp-point"><span class="k">应用方向</span><span class="v">企业内搜、产品/规则查询、知识库检索与答案合成</span></div>
+              <div class="bp-point"><span class="k">挑战</span><span class="v">召回不稳、幻觉风险、线上效果难定位</span></div>
+              <div class="bp-point"><span class="k">方案</span><span class="v">召回/重排/答案合成分层 + 引用溯源 + 离线评测集与线上指标对齐</span></div>
+              <div class="bp-point"><span class="k">结果</span><span class="v">问题可解释、链路可定位、迭代有数据抓手</span></div>
+            </div>
+          </div>
+
+          <div class="biz-panel card" id="bizPanel-ops" role="tabpanel" data-panel="ops" hidden>
+            <div class="bp-head">
+              <div class="bp-icon" aria-hidden="true">✦</div>
+              <div class="bp-title-wrap">
+                <div class="bp-title">AI 运营业务</div>
+                <p class="bp-desc">把玩法与内容变成可配置、可复制、可复盘的流程。</p>
+              </div>
+            </div>
+            <div class="bp-divider" aria-hidden="true"></div>
+            <div class="bp-points">
+              <div class="bp-point"><span class="k">应用方向</span><span class="v">活动生成/配置、内容生产、策略编排与 SOP 沉淀</span></div>
+              <div class="bp-point"><span class="k">挑战</span><span class="v">玩法多、配置复杂、交付口径不一致</span></div>
+              <div class="bp-point"><span class="k">方案</span><span class="v">模板化结构 + 规范化字段 + 一键生成说明（生成/使用/上线）</span></div>
+              <div class="bp-point"><span class="k">结果</span><span class="v">支持批量部署与复盘迭代，协作成本更低</span></div>
+            </div>
+          </div>
+
+          <div class="biz-panel card" id="bizPanel-hw" role="tabpanel" data-panel="hw" hidden>
+            <div class="bp-head">
+              <div class="bp-icon" aria-hidden="true">◎</div>
+              <div class="bp-title-wrap">
+                <div class="bp-title">AI 陪伴硬件产品</div>
+                <p class="bp-desc">端云协同 + 多模态反馈，做"克制但可持续"的陪伴。</p>
+              </div>
+            </div>
+            <div class="bp-divider" aria-hidden="true"></div>
+            <div class="bp-points">
+              <div class="bp-point"><span class="k">应用方向</span><span class="v">语音陪伴、灯效/触觉反馈、端侧能力与 OTA 迭代</span></div>
+              <div class="bp-point"><span class="k">挑战</span><span class="v">时延/成本/隐私约束 + 体验稳定性要求高</span></div>
+              <div class="bp-point"><span class="k">方案</span><span class="v">端云分工 + 降级策略 + 人设/记忆边界 + 内容运营联动</span></div>
+              <div class="bp-point"><span class="k">结果</span><span class="v">交互闭环更稳定，可持续迭代路径更清晰</span></div>
+            </div>
+          </div>
+
+          <div class="biz-panel card" id="bizPanel-vc" role="tabpanel" data-panel="vc" hidden>
+            <div class="bp-head">
+              <div class="bp-icon" aria-hidden="true">⚡</div>
+              <div class="bp-title-wrap">
+                <div class="bp-title">vibe coding 快速实现</div>
+                <p class="bp-desc">从想法到可演示 Demo：快速搭结构、跑通交互与迭代。</p>
+              </div>
+            </div>
+            <div class="bp-divider" aria-hidden="true"></div>
+            <div class="bp-points">
+              <div class="bp-point"><span class="k">应用方向</span><span class="v">原型/静态站、交互 Demo、组件化改造与体验调优</span></div>
+              <div class="bp-point"><span class="k">挑战</span><span class="v">需求变化快，效果要"马上可见"</span></div>
+              <div class="bp-point"><span class="k">方案</span><span class="v">最小闭环优先 + 可复用组件 + 逐步增强（性能/可用性/无障碍）</span></div>
+              <div class="bp-point"><span class="k">结果</span><span class="v">更快完成对齐与验证，减少无效沟通成本</span></div>
+            </div>
+          </div>
+
+          <div class="biz-panel card" id="bizPanel-qa" role="tabpanel" data-panel="qa" hidden>
+            <div class="bp-head">
+              <div class="bp-icon" aria-hidden="true">⟲</div>
+              <div class="bp-title-wrap">
+                <div class="bp-title">AI 落地与质检标准</div>
+                <p class="bp-desc">把质量门槛做成"指标 + 规则 + 流程"的可执行体系。</p>
+              </div>
+            </div>
+            <div class="bp-divider" aria-hidden="true"></div>
+            <div class="bp-points">
+              <div class="bp-point"><span class="k">应用方向</span><span class="v">人设一致性/安全风险/知识准确性/格式规范等多维评测</span></div>
+              <div class="bp-point"><span class="k">挑战</span><span class="v">badcase 分散、复现难、迭代难量化</span></div>
+              <div class="bp-point"><span class="k">方案</span><span class="v">badcase 收集→归因→优化→回归→结论入档；离线评测+线上指标对齐</span></div>
+              <div class="bp-point"><span class="k">结果</span><span class="v">上线质量更稳，问题定位更快，迭代节奏更可控</span></div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -515,11 +472,11 @@
             <div class="tl-dot is-accent" aria-hidden="true"></div>
             <div class="card tl-card">
               <div class="tl-top">
-                <div class="tl-company">中软国际（服务腾讯游戏业务线）</div>
+                <div class="tl-company">深圳-互联网公司</div>
                 <div class="tl-duration">2025.08 — 2026.03</div>
               </div>
               <div class="tl-role">AI 产品策划</div>
-              <div class="tl-desc">围绕游戏客服/运营/角色等多类对话 Agent 的场景定义与效果优化，沉淀“Prompt 调试—内容兜底—算法升级”迭代链路；灰度期周度、常态期双周执行质检/评测，每轮 3–5 天完成数据处理→标注回收→报告输出→结论入档；建立人设一致性/安全风险/知识准确性/输出格式规范等多维质检框架，并推进需求澄清、链路确认、API 联调、配置、灰度/上线与验收闭环。</div>
+              <div class="tl-desc">从"能做"到"理解为什么这样做"<br><br>不再满足于功能实现，而是反复追问：这个能力，为什么要这样设计？<br><br>在不断调试、迭代与复盘中，我逐渐形成了一些自己的判断：<br>好的 AI 体验，本质是"控制感"与"自由度"的平衡<br>Prompt 不是技巧，而是一种对产品意图的精准表达<br>数据不是结果，而是下一轮决策的起点<br><br>这一阶段，我开始从"执行者"，慢慢转向"定义问题的人"。</div>
             </div>
           </div>
 
@@ -527,11 +484,11 @@
             <div class="tl-dot" aria-hidden="true"></div>
             <div class="card tl-card">
               <div class="tl-top">
-                <div class="tl-company">中山市次元游离有限公司</div>
+                <div class="tl-company">中山-互联网公司</div>
                 <div class="tl-duration">2025.03 — 2025.08</div>
               </div>
               <div class="tl-role">AI 产品经理</div>
-              <div class="tl-desc">负责 0–1 需求分析、功能规划、生产运营与项目管理；设计智能客服/角色陪伴/教培/运营玩法等场景的 Agent 与工作流；为多客户与自研项目建立提示词/声音/台词/动画等资料库，提升检索与协作效率。</div>
+              <div class="tl-desc">在不确定中，学会推进确定性<br>参与从 0 到 1 的产品搭建过程。<br>很多时候，没有标准答案，甚至没有清晰问题。<br><br>我做的事情很简单：<br>拆、试、错、再来一轮。<br><br>这是我第一次意识到：<br>"做产品"其实是在做取舍。</div>
             </div>
           </div>
 
@@ -539,11 +496,11 @@
             <div class="tl-dot" aria-hidden="true"></div>
             <div class="card tl-card">
               <div class="tl-top">
-                <div class="tl-company">深圳市海纳英才信息技术有限公司</div>
+                <div class="tl-company">深圳-互联网服务公司</div>
                 <div class="tl-duration">2024.07 — 2024.10</div>
               </div>
-              <div class="tl-role">人事招聘（实习）</div>
-              <div class="tl-desc">协助分析外包业务招聘需求，独立发布岗位、筛选简历、候选人沟通与面试安排；参与日常行政支持与文档整理。</div>
+              <div class="tl-role">实习</div>
+              <div class="tl-desc">开始接触职场协作。<br>没有宏大的目标，更多是基础工作与重复执行。<br><br>但也正是在这些"看起来不重要"的事情里，我学到了：<br><br>沟通不清，比事情做错更致命<br>把一件事做好，需要明确的标准<br><br>这段经历不耀眼，但很重要。<br>它让我看见了"人才市场"。</div>
             </div>
           </div>
 
@@ -551,11 +508,11 @@
             <div class="tl-dot" aria-hidden="true"></div>
             <div class="card tl-card">
               <div class="tl-top">
-                <div class="tl-company">江门市人才发展集团（国企）</div>
+                <div class="tl-company">江门-国企</div>
                 <div class="tl-duration">2024.03 — 2024.05</div>
               </div>
-              <div class="tl-role">综合办公室 / 人才招聘（实习）</div>
-              <div class="tl-desc">参与博士与青年人才招聘专项行动的会务与对接支持，协助材料准备、会议记录与流程梳理；完成多类公文、出行手册与资料汇总。</div>
+              <div class="tl-role">实习</div>
+              <div class="tl-desc">一切的起点<br><br>第一次参与组织运作。<br>更多是观察、理解、适应。<br><br>但我记住了一件事：<br>任何混乱，本质都是缺乏结构。<br>或许人际关系本就复杂。<br><br>这个认知，后来反复被验证。</div>
             </div>
           </div>
         </div>
@@ -650,90 +607,25 @@
           <p class="sub">阅读、旅行与一些小想法。</p>
         </div>
 
-        <div class="masonry" role="list">
-          <button class="card post-card" type="button" role="listitem" aria-pressed="false" aria-label="阅读：《纳瓦尔宝典》（点击翻转查看详情）">
-            <div class="post-inner">
-              <div class="post-face post-front">
-                <div class="post-img" aria-hidden="true"></div>
-                <div class="chip">阅读</div>
-                <div class="post-title">《纳瓦尔宝典》</div>
-                <div class="post-excerpt">关于财富、杠杆与平静专注的摘记。</div>
-              </div>
-              <div class="post-face post-back" aria-hidden="true">
-                <div class="p-back-kicker">背面内容</div>
-                <div class="p-back-title">3 个我反复记住的点</div>
-                <p class="p-back-desc">把长期主义落实成“可执行的选择”：要么提升杠杆，要么提升判断力。</p>
-                <div class="p-back-points">
-                  <div class="p-back-point"><span class="k">杠杆</span><span class="v">代码 / 媒体 / 资本，让努力可复制</span></div>
-                  <div class="p-back-point"><span class="k">专注</span><span class="v">减少噪声输入，保护深度工作时间</span></div>
-                  <div class="p-back-point"><span class="k">平静</span><span class="v">把内耗变成行动，持续复盘</span></div>
-                </div>
-              </div>
-            </div>
-          </button>
+        <div class="sharing-list" role="list">
+          <button class="sharing-item" data-tab="food" type="button">美食</button>
+          <button class="sharing-item" data-tab="travel" type="button">旅游</button>
+          <button class="sharing-item" data-tab="party" type="button">聚会</button>
+          <button class="sharing-item is-active" data-tab="wisdom" type="button">通识</button>
+        </div>
+        <div class="sharing-content">
+          <div class="sharing-pane" data-pane="food">每一道亲手下厨或偶然邂逅的美味，都是当日的最佳犒赏。</div>
+          <div class="sharing-pane" data-pane="travel">既然不能延长生命的长度，那就努力去拓宽它的宽度。</div>
+          <div class="sharing-pane" data-pane="party">好的感情需要"见面"，在面对面的交流中感受彼此的温度。</div>
+          <div class="sharing-pane is-active" data-pane="wisdom">学一点看似"没用"的知识，其实是给灵魂放个长假。</div>
+        </div>
 
-          <button class="card post-card" type="button" role="listitem" aria-pressed="false" aria-label="旅行：京都 · 日本（点击翻转查看详情）">
-            <div class="post-inner">
-              <div class="post-face post-front">
-                <div class="post-img" aria-hidden="true"></div>
-                <div class="chip">旅行</div>
-                <div class="post-title">京都 · 日本</div>
-                <div class="post-excerpt">慢走、安静街道与温柔的光。</div>
-              </div>
-              <div class="post-face post-back" aria-hidden="true">
-                <div class="p-back-kicker">背面内容</div>
-                <div class="p-back-title">我喜欢的 3 个瞬间</div>
-                <p class="p-back-desc">节奏被放慢之后，细节会自己浮出来：光、风、与人之间的距离。</p>
-                <div class="p-back-points">
-                  <div class="p-back-point"><span class="k">清晨</span><span class="v">人少的街道，声音更干净</span></div>
-                  <div class="p-back-point"><span class="k">黄昏</span><span class="v">建筑的阴影像几何一样规整</span></div>
-                  <div class="p-back-point"><span class="k">小店</span><span class="v">克制的陈列与温柔的秩序感</span></div>
-                </div>
-              </div>
-            </div>
-          </button>
-
-          <button class="card post-card" type="button" role="listitem" aria-pressed="false" aria-label="想法：AI 的下一步（点击翻转查看详情）">
-            <div class="post-inner">
-              <div class="post-face post-front">
-                <div class="post-img" aria-hidden="true"></div>
-                <div class="chip">想法</div>
-                <div class="post-title">AI 的下一步</div>
-                <div class="post-excerpt">模型变强之后，产品品味为什么更关键。</div>
-              </div>
-              <div class="post-face post-back" aria-hidden="true">
-                <div class="p-back-kicker">背面内容</div>
-                <div class="p-back-title">我在意的 3 个方向</div>
-                <p class="p-back-desc">当能力趋同，体验与边界就是差异：可控性、可解释、可持续关系。</p>
-                <div class="p-back-points">
-                  <div class="p-back-point"><span class="k">边界</span><span class="v">明确“不做什么”，减少失控</span></div>
-                  <div class="p-back-point"><span class="k">一致</span><span class="v">人设/记忆稳定，避免自相矛盾</span></div>
-                  <div class="p-back-point"><span class="k">闭环</span><span class="v">评测与指标驱动迭代，而非感觉</span></div>
-                </div>
-              </div>
-            </div>
-          </button>
-
-          <button class="card post-card" type="button" role="listitem" aria-pressed="false" aria-label="旅行：瑞士阿尔卑斯（点击翻转查看详情）">
-            <div class="post-inner">
-              <div class="post-face post-front">
-                <div class="post-img" aria-hidden="true"></div>
-                <div class="chip">旅行</div>
-                <div class="post-title">瑞士阿尔卑斯</div>
-                <div class="post-excerpt">广阔的安静、清冽的空气与干净的几何。</div>
-              </div>
-              <div class="post-face post-back" aria-hidden="true">
-                <div class="p-back-kicker">背面内容</div>
-                <div class="p-back-title">如果用 3 个词</div>
-                <p class="p-back-desc">少即是多：风景越大，越需要内心有秩序。</p>
-                <div class="p-back-points">
-                  <div class="p-back-point"><span class="k">尺度</span><span class="v">远景把焦虑拉到更远的地方</span></div>
-                  <div class="p-back-point"><span class="k">呼吸</span><span class="v">空气的“干净感”会影响思考</span></div>
-                  <div class="p-back-point"><span class="k">留白</span><span class="v">越空旷，越能听见自己</span></div>
-                </div>
-              </div>
-            </div>
-          </button>
+        <div class="photo-gallery" role="list">
+          <img class="photo-item" src="assets/gallery-1.jpg" alt="" role="listitem">
+          <img class="photo-item" src="assets/gallery-2.jpg" alt="" role="listitem">
+          <img class="photo-item" src="assets/gallery-3.jpg" alt="" role="listitem">
+          <img class="photo-item" src="assets/gallery-4.jpg" alt="" role="listitem">
+          <img class="photo-item" src="assets/gallery-5.jpg" alt="" role="listitem">
         </div>
       </div>
     </section>
@@ -743,16 +635,12 @@
       <div class="container">
         <div class="cta card" id="contactCta">
           <div>
-            <h2 class="h2">想象力和创造力发现更多的猎奇</h2>
+            <h2 class="h2">想象力和创造力发现更多的Goodcase</h2>
             <p class="sub">愿自己勇敢且善良的一路走下去</p>
           </div>
 
           <div class="contact-actions">
-            <button class="btn btn-primary" id="contactToggle" type="button" aria-expanded="false" aria-controls="contactDetails">联系方式</button>
-            <div class="contact-details" id="contactDetails" hidden>
-              <div class="contact-line"><span class="k">联系电话</span><span class="v">15521520548</span></div>
-              <div class="contact-line"><span class="k">联系邮箱</span><span class="v">1835486847@qq.com</span></div>
-            </div>
+            <div class="contact-line"><span class="k">联系邮箱</span><span class="v">YPH_1124@qq.com</span></div>
           </div>
         </div>
       </div>
@@ -761,7 +649,7 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <div class="muted">© <span id="year"></span> 黄玉萍</div>
+      <div class="muted">© <span id="year"></span> 阔桑啊</div>
       <div class="muted">用留白构建秩序。</div>
     </div>
   </footer>
@@ -769,3 +657,4 @@
   <script src="./app.js"></script>
 </body>
 </html>
+
